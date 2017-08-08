@@ -1,4 +1,4 @@
-package com.ruperttwind.datastructure;
+package com.ruperttwind.datastructure.tree;
 
 /**
  * Created by ruperttwind on 10/06/17.
