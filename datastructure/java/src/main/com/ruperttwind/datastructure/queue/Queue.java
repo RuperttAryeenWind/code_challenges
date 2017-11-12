@@ -1,7 +1,5 @@
 package com.ruperttwind.datastructure.queue;
 
-import com.ruperttwind.datastructure.common.Node;
-
 /**
  * Created by ruperttwind on 10/06/17.
  */
