@@ -1,3 +1,9 @@
+# idea settings file
 .idea
 **/*.iml
 **/target
+
+# atom ide settings file
+**/.settings/**/*
+**/.project
+**/.classpath

@@ -10,7 +10,7 @@
 
     <parent>
         <groupId>com.ruperttwind</groupId>
-        <artifactId>codechallenges</artifactId>
+        <artifactId>code_challenges</artifactId>
         <version>1.0.0</version>
     </parent>
 

@@ -1,5 +1,10 @@
 package com.ruperttwind.datastructure.queue;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+
 /**
  * Created by ruperttwind on 10/06/17.
  */
@@ -36,7 +41,7 @@ public class Queue<T> {
     public T remove() {
         if (size == 0) return null;
 
-        T data = head.getData();
+        T data = head;
         head = head.getBehind();
 
         size = size - 1;
@@ -55,6 +60,20 @@ public class Queue<T> {
         head = null;
         tail = null;
         size = 0l;
+    }
+
+    @Data
+    static class Node<E> {
+
+        private E value;
+        private Node<E> next;
+        private Node<E> prev;
+
+        Node(final Node<E> prev, final E value, final Node<E> next) {
+            this.value = value;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 
     public static void main(String[] Args) {
