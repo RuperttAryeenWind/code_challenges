@@ -3,7 +3,6 @@ package com.ruperttwind.datastructure.list;
 import com.ruperttwind.datastructure.list.common.AbstractList;
 import com.ruperttwind.datastructure.list.common.List;
 
-
 public class LinkedList<E> extends AbstractList<E> implements List<E> {
 
   private Node<E> start;
@@ -28,7 +27,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E> {
   @Override
   public Boolean add(final E value) {
     try {
-      Node<E> node = new Node<E>(start, value, null);
+      Node<E> node = new Node<E>(null, value, start);
       start = node;
       return true;
     } catch (Exception e) {
@@ -50,26 +49,28 @@ public class LinkedList<E> extends AbstractList<E> implements List<E> {
    */
   @Override
   public Boolean remove(final Integer index) {
+
+    // If index is larger than the number of items in the list - throw IndexOutOfBoundsException.
+    if (index > size - 1) throw new IndexOutOfBoundsException();
+
     Node<E> currentNode = start;
-
     for (int i = 0; i < index; i++) {
-      if (currentNode == null) {
-        throw new IndexOutOfBoundsException();
-      }
-
-      if (i == index) {
-        Node<E> _currentNode = currentNode;
-        _currentNode.prev.next = currentNode.next;
-        _currentNode.next.prev = currentNode.prev;
-      }
-      currentNode = currentNode.next;
+      if (i == index) return removeCurrentNode(currentNode);
+      currentNode = currentNode.getNext();
     }
+
     throw new IndexOutOfBoundsException();
   }
 
   @Override
-  public Boolean remove(final E e) {
-    return super.remove(e);
+  public Boolean remove(final E element) {
+    throw new UnsupportedOperationException();
+  }
+
+  private Boolean removeCurrentNode(final Node<E> currentNode) {
+    currentNode.getPrevious().setNext(currentNode.getNext());
+    currentNode.getNext().setPrevious(currentNode.getPrevious());
+    return true;
   }
 
   @Override
@@ -91,7 +92,6 @@ public class LinkedList<E> extends AbstractList<E> implements List<E> {
     return false;
   }
 
-  @Data
   static class Node<E> {
 
     private E value;
@@ -103,5 +103,17 @@ public class LinkedList<E> extends AbstractList<E> implements List<E> {
       this.next = next;
       this.prev = prev;
     }
+
+    Node<E> getNext() { return this.next; }
+
+    Node<E> getPrevious() { return this.prev; }
+
+    E getValue() { return this.value; }
+
+    void setNext(Node<E> element) { this.next = element; }
+
+    void setPrevious(Node<E> element) { this.prev = element; }
+
+    void setValue(E value) { this.value = value; }
   }
 }

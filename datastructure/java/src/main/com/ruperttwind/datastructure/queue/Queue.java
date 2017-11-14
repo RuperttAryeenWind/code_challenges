@@ -1,18 +1,15 @@
 package com.ruperttwind.datastructure.queue;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 /**
  * Created by ruperttwind on 10/06/17.
  */
-public class Queue<T> {
+public class Queue<E> {
 
-    private Node<T> head;
+    private Node<E> head;
 
-    private Node<T> tail;
+    private Node<E> tail;
 
     private Long size;
 
@@ -22,15 +19,15 @@ public class Queue<T> {
         this.size = 0l;
     }
 
-    public void add(T data) {
+    public void add(E value) {
 
-        Node node = new Node(data, tail, null);
+        Node<E> node = new Node<E>(tail, value, null);
 
         if (head == null) {
             head = node;
             tail = node;
         } else {
-            tail.setBehind(node);
+            tail.setAfter(node);
             tail = node;
         }
 
@@ -38,18 +35,17 @@ public class Queue<T> {
         return;
     }
 
-    public T remove() {
+    public Boolean remove() {
         if (size == 0) return null;
 
-        T data = head;
-        head = head.getBehind();
+        head = head.getAfter();
 
         size = size - 1;
-        return data;
+        return true;
     }
 
-    public T peep() {
-        return head.getData();
+    public E peep() {
+        return head.getValue();
     }
 
     public Long size() {
@@ -62,18 +58,29 @@ public class Queue<T> {
         size = 0l;
     }
 
-    @Data
     static class Node<E> {
 
         private E value;
-        private Node<E> next;
-        private Node<E> prev;
+        private Node<E> before;
+        private Node<E> after;
 
-        Node(final Node<E> prev, final E value, final Node<E> next) {
+        Node(final Node<E> before, final E value, final Node<E> after) {
             this.value = value;
-            this.next = next;
-            this.prev = prev;
+            this.after = after;
+            this.before = before;
         }
+
+        Node<E> getAfter() { return this.after; }
+
+        Node<E> getBefore() { return this.before; }
+
+        E getValue() { return this.value; }
+
+        void setAfter(Node<E> element) { this.after = element; }
+
+        void setBefore(Node<E> element) { this.before = element; }
+
+        void setValue(E value) { this.value = value; }
     }
 
     public static void main(String[] Args) {
