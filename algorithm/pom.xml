@@ -59,11 +59,16 @@
             <version>2.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>java/src/main</sourceDirectory>
-        <testSourceDirectory>java/src/test</testSourceDirectory>
+        <testSourceDirectory>java/test</testSourceDirectory>
 
         <plugins>
             <plugin>
